@@ -355,7 +355,7 @@ func (handler *authHandler) ResetPassword(responseWriter http.ResponseWriter, re
 		return
 	}
 	if !userFound {
-		if err := handler.renderPasswordReset(responseWriter, http.StatusOK, token, "If an account exists for that email, Bear Mail will send a reset link shortly.", ""); err != nil {
+		if err := handler.renderPasswordReset(responseWriter, http.StatusInternalServerError, token, "Account not found", ""); err != nil {
 			handler.internalError(responseWriter, request, err)
 		}
 		return
